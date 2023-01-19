@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Pizzeria_Gestionale.Model.Prodotti>
+
+@{
+    ViewBag.Title = "Menu";
+}
+
+<h2>Menù Pizzeria In Forno</h2>
+
+<div class="d-flex flex-wrap gap-5 justify-content-between">
+    @foreach (var item in Model)
+    {
+
+        <div class="form-horizontal">
+            <div class="card" style="width: 15rem;">
+                <img src="~/Content/img/@Html.DisplayFor(modelItem => item.Foto)" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.NomeProdotto)</h5>
+                    <p class="card-text"> @Html.DisplayFor(modelItem => item.Ingredienti)</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">@Html.DisplayNameFor(model => model.TempiConsegna):  @Html.DisplayFor(modelItem => item.TempiConsegna)</li>
+                    <li class="list-group-item">@Html.DisplayFor(modelItem => item.Prezzo)</li>
+                    <li class="list-group-item">
+                        <div class="form-group">
+                            <input type="number" id="quantity" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <a href="#" data-id="@item.IdProdotto" class="card-link">Aggiungi al carrello</a>
+            </div>
+        </div>
+    }
+    }
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var baseUrl = "/Articoli_Ordine/Index/";
+        $(".card-link").click(function () {
+            var id = $(this).data("id");
+            var quantity = $("#quantity").val();
+            location.href = baseUrl + "?id=" + id + "&quantity=" + quantity;
+        });
+    })
+</script>

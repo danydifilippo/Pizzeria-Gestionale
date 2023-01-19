@@ -1,0 +1,50 @@
+﻿@model Pizzeria_Gestionale.Model.Articoli_Ordine
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Articoli_Ordine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Prodotti.NomeProdotto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prodotti.NomeProdotto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantita)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantita)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prezzo_Tot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prezzo_Tot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdDettaglio }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
