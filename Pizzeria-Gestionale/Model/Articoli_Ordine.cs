@@ -8,11 +8,6 @@ namespace Pizzeria_Gestionale.Model
 
     public partial class Articoli_Ordine
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Articoli_Ordine()
-        {
-            Ordini = new HashSet<Ordini>();
-        }
 
         [Key]
         public int IdDettaglio { get; set; }
@@ -26,10 +21,14 @@ namespace Pizzeria_Gestionale.Model
 
         public string Note { get; set; }
 
-        public List<Articoli_Ordine> cart = new List<Articoli_Ordine>();
+        public int? IdOrdine { get; set; }
+
+        public int? IdUtente { get; set; }
+
+        public virtual Ordini Ordini { get; set; }
+
         public virtual Prodotti Prodotti { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ordini> Ordini { get; set; }
+        public virtual Utenti Utenti { get; set; }
     }
 }

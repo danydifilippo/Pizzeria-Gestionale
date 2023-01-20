@@ -19,10 +19,6 @@ namespace Pizzeria_Gestionale.Model
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Articoli_Ordine>()
-                .HasMany(e => e.Ordini)
-                .WithRequired(e => e.Articoli_Ordine)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Ordini>()
                 .Property(e => e.Totale)

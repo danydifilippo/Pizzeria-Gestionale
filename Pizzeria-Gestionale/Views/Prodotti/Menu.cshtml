@@ -4,7 +4,7 @@
     ViewBag.Title = "Menu";
 }
 
-<h2>Menù Pizzeria In Forno</h2>
+<h2 class="title">Menù Pizzeria In Forno</h2>
 
 <div class="d-flex flex-wrap gap-5 justify-content-between">
     @foreach (var item in Model)
@@ -20,18 +20,15 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">@Html.DisplayNameFor(model => model.TempiConsegna):  @Html.DisplayFor(modelItem => item.TempiConsegna)</li>
                     <li class="list-group-item">@Html.DisplayFor(modelItem => item.Prezzo)</li>
+                    <li class="list-group-item qta">Qta: <input type="number"/></li>
+                    <li class="list-group-item note">Note: <input type="text" class="note" /></li>
                     <li class="list-group-item">
-                        <div class="form-group">
-                            <input type="number" id="quantity" />
-                        </div>
+                        <a href="#" data-id="@item.IdProdotto" class="card-link">Aggiungi al carrello</a>
                     </li>
                 </ul>
             </div>
-            <div class="card-body">
-                <a href="#" data-id="@item.IdProdotto" class="card-link">Aggiungi al carrello</a>
-            </div>
         </div>
-    }
+    
     }
 </div>
 
@@ -41,8 +38,9 @@
         var baseUrl = "/Articoli_Ordine/Index/";
         $(".card-link").click(function () {
             var id = $(this).data("id");
-            var quantity = $("#quantity").val();
-            location.href = baseUrl + "?id=" + id + "&quantity=" + quantity;
+            var quantity = $(this).parent("li").siblings(".qta").children("input").val();
+            var note = $(this).parent("li").siblings(".note").children("input").val();
+            location.href = baseUrl + "?id=" + id + "&quantity=" + quantity + "&note=" + note;
         });
     })
 </script>

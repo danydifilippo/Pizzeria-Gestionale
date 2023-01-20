@@ -141,6 +141,7 @@
     <Compile Include="Model\ModelDbContext.cs" />
     <Compile Include="Model\Ordini.cs" />
     <Compile Include="Model\Prodotti.cs" />
+    <Compile Include="Model\Roles.cs" />
     <Compile Include="Model\Utenti.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -239,13 +240,15 @@
     <Content Include="Views\Ordini\Details.cshtml" />
     <Content Include="Views\Ordini\Edit.cshtml" />
     <Content Include="Views\Ordini\Index.cshtml" />
+    <Content Include="Views\Prodotti\Edit.cshtml" />
+    <Content Include="Views\Prodotti\Menu.cshtml" />
+    <Content Include="Views\Articoli_Ordine\cart.cshtml" />
     <Content Include="Views\Utenti\Create.cshtml" />
     <Content Include="Views\Utenti\Delete.cshtml" />
     <Content Include="Views\Utenti\Details.cshtml" />
     <Content Include="Views\Utenti\Edit.cshtml" />
     <Content Include="Views\Utenti\Index.cshtml" />
-    <Content Include="Views\Prodotti\Edit.cshtml" />
-    <Content Include="Views\Prodotti\Menu.cshtml" />
+    <Content Include="Views\Utenti\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

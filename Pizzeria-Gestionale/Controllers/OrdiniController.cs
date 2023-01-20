@@ -21,7 +21,7 @@ namespace Pizzeria_Gestionale.Controllers
             return View(ordini.ToList());
         }
 
-        // GET: Ordini/Details/5
+        // GET: Ordinis/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,20 +36,19 @@ namespace Pizzeria_Gestionale.Controllers
             return View(ordini);
         }
 
-        // GET: Ordini/Create
+        // GET: Ordinis/Create
         public ActionResult Create()
         {
-            ViewBag.IdDettaglio = new SelectList(db.Articoli_Ordine, "IdDettaglio", "Quantita");
             ViewBag.IdUtente = new SelectList(db.Utenti, "IdUtente", "Ruolo");
             return View();
         }
 
-        // POST: Ordini/Create
+        // POST: Ordinis/Create
         // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdOrdine,Totale,StatoOrdine,IdDettaglio,IdUtente")] Ordini ordini)
+        public ActionResult Create([Bind(Include = "IdOrdine,Totale,StatoOrdine,IdUtente")] Ordini ordini)
         {
             if (ModelState.IsValid)
             {
@@ -58,12 +57,11 @@ namespace Pizzeria_Gestionale.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdDettaglio = new SelectList(db.Articoli_Ordine, "IdDettaglio", "Quantita", ordini.IdDettaglio);
             ViewBag.IdUtente = new SelectList(db.Utenti, "IdUtente", "Ruolo", ordini.IdUtente);
             return View(ordini);
         }
 
-        // GET: Ordini/Edit/5
+        // GET: Ordinis/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -75,17 +73,16 @@ namespace Pizzeria_Gestionale.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IdDettaglio = new SelectList(db.Articoli_Ordine, "IdDettaglio", "Quantita", ordini.IdDettaglio);
             ViewBag.IdUtente = new SelectList(db.Utenti, "IdUtente", "Ruolo", ordini.IdUtente);
             return View(ordini);
         }
 
-        // POST: Ordini/Edit/5
+        // POST: Ordinis/Edit/5
         // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdOrdine,Totale,StatoOrdine,IdDettaglio,IdUtente")] Ordini ordini)
+        public ActionResult Edit([Bind(Include = "IdOrdine,Totale,StatoOrdine,IdUtente")] Ordini ordini)
         {
             if (ModelState.IsValid)
             {
@@ -93,12 +90,11 @@ namespace Pizzeria_Gestionale.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdDettaglio = new SelectList(db.Articoli_Ordine, "IdDettaglio", "Quantita", ordini.IdDettaglio);
             ViewBag.IdUtente = new SelectList(db.Utenti, "IdUtente", "Ruolo", ordini.IdUtente);
             return View(ordini);
         }
 
-        // GET: Ordini/Delete/5
+        // GET: Ordinis/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +109,7 @@ namespace Pizzeria_Gestionale.Controllers
             return View(ordini);
         }
 
-        // POST: Ordini/Delete/5
+        // POST: Ordinis/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -134,3 +130,117 @@ namespace Pizzeria_Gestionale.Controllers
         }
     }
 }
+
+// GET: Ordini/Details/5
+//        public ActionResult Details(int? id)
+//        {
+//            if (id == null)
+//            {
+//                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+//            }
+//            Ordini ordini = db.Ordini.Find(id);
+//            if (ordini == null)
+//            {
+//                return HttpNotFound();
+//            }
+//            return View(ordini);
+//        }
+
+//        // GET: Ordini/Create
+//        public ActionResult Create()
+//        {
+//            ViewBag.IdDettaglio = new SelectList(db.Articoli_Ordine, "IdDettaglio", "Quantita");
+//            ViewBag.IdUtente = new SelectList(db.Utenti, "IdUtente", "Ruolo");
+//            return View();
+//        }
+
+//        // POST: Ordini/Create
+//        // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
+//        // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
+//        [HttpPost]
+//        [ValidateAntiForgeryToken]
+//        public ActionResult Create([Bind(Include = "IdOrdine,Totale,StatoOrdine,IdDettaglio,IdUtente")] Ordini ordini)
+//        {
+//            if (ModelState.IsValid)
+//            {
+//                db.Ordini.Add(ordini);
+//                db.SaveChanges();
+//                return RedirectToAction("Index");
+//            }
+
+//            ViewBag.IdDettaglio = new SelectList(db.Articoli_Ordine, "IdDettaglio", "Quantita", ordini.IdDettaglio);
+//            ViewBag.IdUtente = new SelectList(db.Utenti, "IdUtente", "Ruolo", ordini.IdUtente);
+//            return View(ordini);
+//        }
+
+//        // GET: Ordini/Edit/5
+//        public ActionResult Edit(int? id)
+//        {
+//            if (id == null)
+//            {
+//                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+//            }
+//            Ordini ordini = db.Ordini.Find(id);
+//            if (ordini == null)
+//            {
+//                return HttpNotFound();
+//            }
+//            ViewBag.IdDettaglio = new SelectList(db.Articoli_Ordine, "IdDettaglio", "Quantita", ordini.IdDettaglio);
+//            ViewBag.IdUtente = new SelectList(db.Utenti, "IdUtente", "Ruolo", ordini.IdUtente);
+//            return View(ordini);
+//        }
+
+//        // POST: Ordini/Edit/5
+//        // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
+//        // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
+//        [HttpPost]
+//        [ValidateAntiForgeryToken]
+//        public ActionResult Edit([Bind(Include = "IdOrdine,Totale,StatoOrdine,IdDettaglio,IdUtente")] Ordini ordini)
+//        {
+//            if (ModelState.IsValid)
+//            {
+//                db.Entry(ordini).State = EntityState.Modified;
+//                db.SaveChanges();
+//                return RedirectToAction("Index");
+//            }
+//            ViewBag.IdDettaglio = new SelectList(db.Articoli_Ordine, "IdDettaglio", "Quantita", ordini.IdDettaglio);
+//            ViewBag.IdUtente = new SelectList(db.Utenti, "IdUtente", "Ruolo", ordini.IdUtente);
+//            return View(ordini);
+//        }
+
+//        // GET: Ordini/Delete/5
+//        public ActionResult Delete(int? id)
+//        {
+//            if (id == null)
+//            {
+//                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+//            }
+//            Ordini ordini = db.Ordini.Find(id);
+//            if (ordini == null)
+//            {
+//                return HttpNotFound();
+//            }
+//            return View(ordini);
+//        }
+
+//        // POST: Ordini/Delete/5
+//        [HttpPost, ActionName("Delete")]
+//        [ValidateAntiForgeryToken]
+//        public ActionResult DeleteConfirmed(int id)
+//        {
+//            Ordini ordini = db.Ordini.Find(id);
+//            db.Ordini.Remove(ordini);
+//            db.SaveChanges();
+//            return RedirectToAction("Index");
+//        }
+
+//        protected override void Dispose(bool disposing)
+//        {
+//            if (disposing)
+//            {
+//                db.Dispose();
+//            }
+//            base.Dispose(disposing);
+//        }
+//    }
+//}

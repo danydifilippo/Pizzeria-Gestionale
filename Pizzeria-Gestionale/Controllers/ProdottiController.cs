@@ -10,37 +10,24 @@ using Pizzeria_Gestionale.Model;
 
 namespace Pizzeria_Gestionale.Controllers
 {
+    [Authorize]
     public class ProdottiController : Controller
     {
         private ModelDbContext db = new ModelDbContext();
-
-        //[Authorize]
+            
+        [Authorize(Roles="Admin")]
         // GET: Prodotti
         public ActionResult Index()
         {
             return View(db.Prodotti.ToList());
         }
 
+        [AllowAnonymous]
         public ActionResult Menu()
         {
             return View(db.Prodotti.ToList());
         }
 
-
-        // GET: Prodotti/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Prodotti prodotti = db.Prodotti.Find(id);
-            if (prodotti == null)
-            {
-                return HttpNotFound();
-            }
-            return View(prodotti);
-        }
 
         // GET: Prodotti/Create
         public ActionResult Create()

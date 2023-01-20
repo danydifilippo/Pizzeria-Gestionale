@@ -15,10 +15,10 @@
     @Scripts.Render("~/bundles/bootstrap")
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
-
+    <div class="d-flex flex-column justify-content-between main">
         <nav class="navbar">
             <div class="container-fluid mx-5">
 
@@ -34,11 +34,22 @@
                         <a class="nav-link @(path.StartsWith("/Ordini") ? "active" : "")" href="/Ordini/Index">Ordini</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @(path.StartsWith("/Artoli_Ordine") ? "active" : "")" href="/Artoli_Ordine/Index">Carrello</a>
+                        <a class="nav-link @(path.StartsWith("/Articoli_Ordine") ? "active" : "")" href="/Articoli_Ordine/Cart">Carrello</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link @(path.StartsWith("/Utenti") ? "active" : "")" href="/Home/Index">Account</a>
-                    </li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link @(path.StartsWith("/Utenti") ? "active" : "")" href="/Utenti/Logout">Logout</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link @(path.StartsWith("/Utenti") ? "active" : "")" href="/Utenti/Login">Login</a>
+                        </li>
+
+                    }
                 </ul>
                 <div class="nav justify-content-end">
                     <button class="btn btn-outline-info">
@@ -53,16 +64,16 @@
             </div>
         </section>
 
-            <footer class="container-fluid d-flex justify-content-center">
-                <div>
-                    <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET by Daniela</p>
-                </div>
-                <div id="Admin">
-                    <a class="nav-link @(path.StartsWith("/Utenti") ? "active" : "")" href="/Prodotti/Index">Area Riservata Admin</a>
-                </div>
-            </footer>
+        <footer class="container-fluid d-flex justify-content-center">
+            <div>
+                <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET by Daniela</p>
+            </div>
+            <div id="Admin">
+                <a class="nav-link @(path.StartsWith("/Utenti") ? "active" : "")" href="/Prodotti/Index">Area Riservata Admin</a>
+            </div>
+        </footer>
 
-
+    </div>
     @RenderSection("scripts", required: false)
 </body>
 </html>

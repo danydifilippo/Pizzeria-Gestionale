@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Pizzeria_Gestionale.Model;
 
 namespace Pizzeria_Gestionale.Controllers
@@ -20,6 +21,39 @@ namespace Pizzeria_Gestionale.Controllers
             return View(db.Utenti.ToList());
         }
 
+        // GET: Utenti/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Utenti utenti = db.Utenti.Find(id);
+            if (utenti == null)
+            {
+                return HttpNotFound();
+            }
+            return View(utenti);
+        }
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login([Bind(Include = "Username,Password")] Utenti u)
+        {
+            
+       
+                var utente = db.Utenti.Where(x => x.Username == u.Username && x.Password == u.Password);
+                if (utente != null)
+                {
+                    FormsAuthentication.SetAuthCookie(u.Username, false);
+                    return Redirect(FormsAuthentication.DefaultUrl);
+                }
+
+            return RedirectToAction("Login");
+        }
 
         // GET: Utenti/Create
         public ActionResult Create()
@@ -28,13 +62,14 @@ namespace Pizzeria_Gestionale.Controllers
         }
 
         // POST: Utenti/Create
+        // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
+        // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Username,Password,Nome,Cognome,Indirizzo")] Utenti utenti)
+        public ActionResult Create([Bind(Include = "IdUtente,Ruolo,Username,Password,Nome,Cognome,Indirizzo")] Utenti utenti)
         {
             if (ModelState.IsValid)
             {
-                utenti.Ruolo = "user";
                 db.Utenti.Add(utenti);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -63,7 +98,7 @@ namespace Pizzeria_Gestionale.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Utenti utenti)
+        public ActionResult Edit([Bind(Include = "IdUtente,Ruolo,Username,Password,Nome,Cognome,Indirizzo")] Utenti utenti)
         {
             if (ModelState.IsValid)
             {

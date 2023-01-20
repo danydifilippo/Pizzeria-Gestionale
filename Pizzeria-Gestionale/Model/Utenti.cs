@@ -12,6 +12,7 @@ namespace Pizzeria_Gestionale.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Utenti()
         {
+            Articoli_Ordine = new HashSet<Articoli_Ordine>();
             Ordini = new HashSet<Ordini>();
         }
 
@@ -41,6 +42,9 @@ namespace Pizzeria_Gestionale.Model
         [Required]
         [StringLength(50)]
         public string Indirizzo { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Articoli_Ordine> Articoli_Ordine { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ordini> Ordini { get; set; }
