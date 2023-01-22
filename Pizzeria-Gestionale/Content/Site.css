@@ -37,19 +37,65 @@ footer {
 #InForno {
     position: absolute;
     top: 27%;
-    width:29em;
+    width: 29em;
+    animation-name: left;
+    animation-duration:2s;
 }
+
+
+    @keyframes left {
+        0% {
+            transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -620.262, 0, 0, 1);
+        }
+        100% {
+            transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+        }
+        
+    }
+
+
+
 #Del {
     position: absolute;
     top: 40%;
     z-index: 2;
-    width:25em;
+    width: 25em;
+    animation-name: right;
+    animation-duration: 2s;
+
 }
+
+
+@keyframes right {
+    0% {
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 620.262, 0, 0, 1);
+    }
+
+    100% {
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+    }
+}
+
 #Home {
     position: absolute;
     top: 57%;
     width: 26em;
+    animation-name: up;
+    animation-duration: 2s;
+
 }
+
+
+@keyframes up {
+    0% {
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 290, 0, 1);
+    }
+
+    100% {
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -8, 0, 1)
+    }
+}
+
 
 table, .container-menu {
     background-color: #ffffffab;
