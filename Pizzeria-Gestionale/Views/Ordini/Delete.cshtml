@@ -6,25 +6,25 @@
 
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Sicuro di voler cancellare il seguente ordine?</h3>
 <div>
-    <h4>Ordini</h4>
+    <h4>Dettagli Ordine</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Articoli_Ordine.Quantita)
+            @Html.DisplayNameFor(model => model.IdOrdine)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Articoli_Ordine.Quantita)
+            @Html.DisplayFor(model => model.IdOrdine)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Utenti.Ruolo)
+            @Html.DisplayName("Cliente")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Utenti.Ruolo)
+            @Html.DisplayFor(model => model.Utenti.Cognome)  @Html.DisplayFor(model => model.Utenti.Nome)
         </dd>
 
         <dt>
@@ -49,8 +49,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Elimina" class="btn btn-outline-danger" /> |
+            @Html.ActionLink("Torna a Gestione Ordini", "Index")
         </div>
     }
 </div>

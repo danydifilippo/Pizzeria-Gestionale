@@ -10,12 +10,12 @@ using Pizzeria_Gestionale.Model;
 
 namespace Pizzeria_Gestionale.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ProdottiController : Controller
     {
         private ModelDbContext db = new ModelDbContext();
             
-        [Authorize(Roles="Admin")]
+        
         // GET: Prodotti
         public ActionResult Index()
         {

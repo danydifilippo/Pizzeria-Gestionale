@@ -9,20 +9,18 @@
 
                 <div class="col-md-4 d-flex align-items-center">
                     <div class="card-body align-text-bottom fs-5">
-                        @Html.HiddenFor(model=>model.IdDettaglio)
-                        <h3 class="card-title">@Html.DisplayFor(model => model.Prodotti.NomeProdotto)</h3>
-                        <p class="card-text">Quantità: @Html.DisplayFor(model => model.Quantita)</p>
-                        <p class="card-text">Totale: @Html.DisplayFor(model => model.Prezzo_Tot)</p>
-
                         @using (Html.BeginForm())
                         {
                             @Html.AntiForgeryToken()
-
+                            @Html.HiddenFor(model => model.IdDettaglio)
+                            <h3 class="card-title">@Html.DisplayFor(model => model.Prodotti.NomeProdotto)</h3>
+                            <p class="card-text">Quantità: @Html.DisplayFor(model => model.Quantita)</p>
+                            <p class="card-text">Totale: @Html.DisplayFor(model => model.Prezzo_Tot)</p>
                             <div class="form-actions no-color text-center">
                                 <input type="submit" value="Elimina" class="btn btn-outline-danger mb-2" />
                                 <p>
                                     oppure <br />
-                                    @Html.ActionLink("Modifica quantità", "Edit")
+                                    @Html.ActionLink("Modifica quantità", "Edit", new { id = Model.IdDettaglio})
                                 </p>
                             </div>
                         }

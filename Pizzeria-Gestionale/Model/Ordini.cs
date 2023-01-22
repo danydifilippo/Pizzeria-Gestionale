@@ -19,10 +19,12 @@ namespace Pizzeria_Gestionale.Model
         public int IdOrdine { get; set; }
 
         [Column(TypeName = "money")]
+        [DisplayFormat(DataFormatString = "{0:C2}")]
         public decimal Totale { get; set; }
 
         [Required]
         [StringLength(20)]
+        [Display(Name ="Stato Ordine")]
         public string StatoOrdine { get; set; }
 
         public int IdUtente { get; set; }

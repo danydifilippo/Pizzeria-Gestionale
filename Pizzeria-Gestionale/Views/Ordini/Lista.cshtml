@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Pizzeria_Gestionale.Model.Ordini>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista";
 }
 
 <h2>Gestione Ordini</h2>
@@ -13,15 +13,17 @@
             @Html.DisplayNameFor(model => model.IdOrdine)
         </th>
         <th>
-            @Html.DisplayName("Cliente")
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Totale)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.StatoOrdine)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayName("Ordine")
+        </th>
+        <th>
+
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -39,14 +41,25 @@
             <td>
                 @Html.DisplayFor(modelItem => item.StatoOrdine)
             </td>
-            <td class="fw-bold">
-                @Html.ActionLink("Modifica Stato", "Edit", new { id = item.IdOrdine }) |
-                @Html.ActionLink("Dettagli", "Details", new { id = item.IdOrdine }) |
-                @Html.ActionLink("Elimina", "Delete", new { id = item.IdOrdine })
+            <td>
+                @if (item.StatoOrdine == "Confermato")
+                {
+                    @Html.Display("In Preparazione")
+                }
+                else if (item.StatoOrdine == "Spedito")
+                {
+                    @Html.Display("In Arrivo")
+                }
+                else if (item.StatoOrdine == "Evaso")
+                {
+                    @Html.Display("Consegnato")
+
+                }
             </td>
-        </tr>
+                <td class="fw-bold">
+                    @Html.ActionLink("Dettagli", "Details", new { id = item.IdOrdine })
+                </td>
+            </tr>
     }
 
 </table>
-
-

@@ -17,6 +17,7 @@ namespace Pizzeria_Gestionale.Model
         [Required]
         public int Quantita { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:C2}")]
         public decimal Prezzo_Tot { get; set; }
 
         public string Note { get; set; }

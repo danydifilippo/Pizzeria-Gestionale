@@ -28,15 +28,28 @@
                         <a class="nav-link @(path.StartsWith("/Home") ? "active" : "")" href="/Home/Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @(path.StartsWith("/Prodotti") ? "active" : "")" href="/Prodotti/Menu">Menù</a>
+                        <a class="nav-link @(path.StartsWith("/Prodotti/Menu") ? "active" : "")" href="/Prodotti/Menu">Menù</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link @(path.StartsWith("/Ordini") ? "active" : "")" href="/Ordini/Index">Ordini</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link @(path.StartsWith("/Articoli_Ordine") ? "active" : "")" href="/Articoli_Ordine/Cart">Carrello</a>
-                    </li>
+                    @if (User.Identity.Name == "admin")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link @(path.StartsWith("/Prodotti/Index") ? "active" : "")" href="/Prodotti/Index">Gestione Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(path.StartsWith("/Ordini/Index") ? "active" : "")" href="/Ordini/Index">Gestione Ordini</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link @(path.StartsWith("/Ordini/Lista") ? "active" : "")" href="/Ordini/Lista">Ordini</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(path.StartsWith("/Articoli_Ordine") ? "active" : "")" href="/Articoli_Ordine/Cart">Carrello</a>
+                        </li>
+                    }
 
+                   
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
@@ -69,7 +82,7 @@
                 <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET by Daniela</p>
             </div>
             <div id="Admin">
-                <a class="nav-link @(path.StartsWith("/Utenti") ? "active" : "")" href="/Prodotti/Index">Area Riservata Admin</a>
+                <a class="nav-link @(path.StartsWith("/Prodotti") ? "active" : "")" href="/Prodotti/Index">Area Riservata Admin</a>
             </div>
         </footer>
 

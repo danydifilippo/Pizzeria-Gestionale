@@ -1,50 +1,56 @@
-﻿@model Pizzeria_Gestionale.Model.Ordini
+﻿@model IEnumerable<Pizzeria_Gestionale.Model.Articoli_Ordine>
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Carrello</h2>
 
-<div>
-    <h4>Ordini</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Articoli_Ordine.Quantita)
-        </dt>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Prodotti.NomeProdotto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prezzo_Tot)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Note)
+        </th>
+    </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Articoli_Ordine.Quantita)
-        </dd>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prodotti.NomeProdotto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantita)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prezzo_Tot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+        </tr>
+    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Utenti.Ruolo)
-        </dt>
+</table>
 
-        <dd>
-            @Html.DisplayFor(model => model.Utenti.Ruolo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Totale)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Totale)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StatoOrdine)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StatoOrdine)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdOrdine }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@if(User.Identity.Name=="admin")
+            {
+                <div>
+                    @Html.ActionLink("Torna a Lista Ordini", "Index")
+                </div>
+            }
+            else
+            {
+                <div>
+                    @Html.ActionLink("Torna a Lista Ordini", "Lista")
+                </div>
+            }

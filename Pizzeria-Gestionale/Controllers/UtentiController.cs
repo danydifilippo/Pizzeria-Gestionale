@@ -15,6 +15,7 @@ namespace Pizzeria_Gestionale.Controllers
     {
         private ModelDbContext db = new ModelDbContext();
 
+        [Authorize(Roles="Admin")]
         // GET: Utenti
         public ActionResult Index()
         {
@@ -22,19 +23,7 @@ namespace Pizzeria_Gestionale.Controllers
         }
 
         // GET: Utenti/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Utenti utenti = db.Utenti.Find(id);
-            if (utenti == null)
-            {
-                return HttpNotFound();
-            }
-            return View(utenti);
-        }
+   
         public ActionResult Login()
         {
             return View();
@@ -55,6 +44,12 @@ namespace Pizzeria_Gestionale.Controllers
             return RedirectToAction("Login");
         }
 
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return Redirect("/Home/Index");
+        }
+
         // GET: Utenti/Create
         public ActionResult Create()
         {
@@ -66,18 +61,17 @@ namespace Pizzeria_Gestionale.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdUtente,Ruolo,Username,Password,Nome,Cognome,Indirizzo")] Utenti utenti)
+        public ActionResult Create(Utenti utenti)
         {
-            if (ModelState.IsValid)
-            {
+            utenti.Ruolo = "Utente";
+
                 db.Utenti.Add(utenti);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                return RedirectToAction("Login");
 
-            return View(utenti);
         }
 
+        [Authorize(Roles ="Admin")]
         // GET: Utenti/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -109,6 +103,7 @@ namespace Pizzeria_Gestionale.Controllers
             return View(utenti);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Utenti/Delete/5
         public ActionResult Delete(int? id)
         {

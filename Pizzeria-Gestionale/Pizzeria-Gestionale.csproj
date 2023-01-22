@@ -235,9 +235,7 @@
     <Content Include="Views\Articoli_Ordine\Details.cshtml" />
     <Content Include="Views\Articoli_Ordine\Edit.cshtml" />
     <Content Include="Views\Articoli_Ordine\Index.cshtml" />
-    <Content Include="Views\Ordini\Create.cshtml" />
     <Content Include="Views\Ordini\Delete.cshtml" />
-    <Content Include="Views\Ordini\Details.cshtml" />
     <Content Include="Views\Ordini\Edit.cshtml" />
     <Content Include="Views\Ordini\Index.cshtml" />
     <Content Include="Views\Prodotti\Edit.cshtml" />
@@ -249,6 +247,9 @@
     <Content Include="Views\Utenti\Edit.cshtml" />
     <Content Include="Views\Utenti\Index.cshtml" />
     <Content Include="Views\Utenti\Login.cshtml" />
+    <Content Include="Views\Ordini\Create.cshtml" />
+    <Content Include="Views\Ordini\Lista.cshtml" />
+    <Content Include="Views\Ordini\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
